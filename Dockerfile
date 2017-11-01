@@ -21,4 +21,4 @@ RUN apk del py-pip \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 # Add CLI to PATH
-ENV PATH "$PATH:~/.local/bin"
+ENV PATH "$PATH:/root/.local/bin"
