@@ -13,6 +13,7 @@ RUN apk add --update libsass
 RUN gem install bundler
 # Install Jekyll
 COPY Gemfile .
+COPY Gemfile.lock .
 RUN bundle check || bundle install --jobs=4 --retry=3
 # Tidy up
 RUN apk del py-pip \
