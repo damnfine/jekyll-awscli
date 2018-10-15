@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
 
-group :jekyll_plugins do
-  gem 'jekyll-contentful-data-import'
-end
+gem "jekyll", "~> 3.8"
+gem "prismic.io", "~> 1.6", require: 'prismic'
