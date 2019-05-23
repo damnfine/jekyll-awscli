@@ -1,4 +1,4 @@
-FROM starefossen/ruby-node:2-10-alpine
+FROM damnfine/ruby-node:2.6-10.15
 # update and upgrade packages
 RUN apk update && apk upgrade && apk add --update alpine-sdk
 # Install git
@@ -9,8 +9,6 @@ RUN apk add python python-dev py-pip
 RUN pip install awscli --user --upgrade
 # Install libsass
 RUN apk add --update libsass
-# Install Bundler
-RUN gem install bundler
 # Install Jekyll
 COPY Gemfile .
 COPY Gemfile.lock .
