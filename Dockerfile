@@ -1,4 +1,4 @@
-FROM starefossen/ruby-node:2-8-alpine
+FROM starefossen/ruby-node:2-10-alpine
 # update and upgrade packages
 RUN apk update && apk upgrade && apk add --update alpine-sdk
 # Install git
