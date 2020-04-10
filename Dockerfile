@@ -1,6 +1,9 @@
-FROM ruby:2.6.4-alpine
+FROM ruby:2.7.1-alpine
 
-ENV NODE_VERSION 10.18.1
+ENV NODE_VERSION 12.16.2
+
+# update and upgrade packages
+RUN apk update && apk upgrade && apk add --update alpine-sdk
 
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node \
@@ -12,7 +15,7 @@ RUN addgroup -g 1000 node \
       && case "${alpineArch##*-}" in \
         x86_64) \
           ARCH='x64' \
-          CHECKSUM="72de2f5e7826c2c13374c1d2e2a283556336c03b03507e8a6216b376a3c7693e" \
+          CHECKSUM="f6b8bb0ee376cd1e7096f15b68efc3bb6adbd2cb33a12002d5982384b733dcab" \
           ;; \
         *) ;; \
       esac \
@@ -67,10 +70,11 @@ RUN addgroup -g 1000 node \
     && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt; \
   fi \
   && rm -f "node-v$NODE_VERSION-linux-$ARCH-musl.tar.xz" \
-  && apk del .build-deps
+  && apk del .build-deps \
+  # smoke tests
+  && node --version \
+  && npm --version
 
-# update and upgrade packages
-RUN apk update && apk upgrade && apk add --update alpine-sdk
 # Install git
 RUN apk add --update git openssh
 # Install Python
