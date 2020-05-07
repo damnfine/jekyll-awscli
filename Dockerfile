@@ -84,7 +84,7 @@ RUN pip install awscli --user --upgrade
 # Install libsass
 RUN apk add --update libsass
 # Install Bundler
-RUN gem install bundler
+RUN gem install bundler:1.16.5
 # Install Jekyll
 COPY Gemfile .
 COPY Gemfile.lock .
