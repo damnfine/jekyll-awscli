@@ -77,9 +77,9 @@ RUN addgroup -g 1000 node \
 # Install git
 RUN apk add --update git openssh
 # Install Python
-RUN apk add python python-dev py-pip
+RUN apk add --update python3 python3-dev py3-pip
 # Install AWS CLI
-RUN pip install awscli --user --upgrade
+RUN pip3 install awscli --user --upgrade
 # Install libsass
 RUN apk add --update libsass
 # Install Bundler
@@ -89,8 +89,8 @@ COPY Gemfile .
 COPY Gemfile.lock .
 RUN bundle check || bundle install --jobs=4 --retry=3
 # Tidy up
-RUN apk del py-pip \
-    && apk del py-setuptools \
+RUN apk del py3-pip \
+    && apk del py3-setuptools \
     && rm -rf /var/cache/apk/* \
     && rm -rf /tmp/*
 # Add CLI to PATH
