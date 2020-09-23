@@ -1,6 +1,6 @@
 FROM ruby:2.7.1-alpine
 
-ENV NODE_VERSION 12.16.2
+ENV NODE_VERSION 12.18.4
 
 # update and upgrade packages
 RUN apk update && apk upgrade && apk add --update alpine-sdk
