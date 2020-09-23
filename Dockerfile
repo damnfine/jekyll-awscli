@@ -89,9 +89,6 @@ COPY Gemfile .
 COPY Gemfile.lock .
 RUN bundle check || bundle install --jobs=4 --retry=3
 # Tidy up
-RUN apk del py3-pip \
-    && apk del py3-setuptools \
-    && rm -rf /var/cache/apk/* \
-    && rm -rf /tmp/*
+RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 # Add CLI to PATH
 ENV PATH "$PATH:/root/.local/bin"
